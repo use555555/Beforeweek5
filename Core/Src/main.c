@@ -43,7 +43,7 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+uint32_t TimeStamp = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -96,6 +96,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if(HAL_GetTick() - TimeStamp >= 100)
+	  {
+		  TimeStamp = HAL_GetTick();
+		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
